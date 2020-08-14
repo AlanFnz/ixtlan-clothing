@@ -1,6 +1,10 @@
 {
-  "name": "arkhe-clothing",
+  "name": "ixtlan-clothing",
   "version": "0.1.0",
+  "engines": {
+    "node": "12.18.2",
+    "yarn": "1.22.4"
+  },
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

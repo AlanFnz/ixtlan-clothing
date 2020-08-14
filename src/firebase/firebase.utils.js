@@ -3,13 +3,13 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const config = {
-    apiKey: "AIzaSyCSGprTF2iR91CKQ0zVLJ7y2fUY6J_gebI",
-    authDomain: "arkhe-clothing-db.firebaseapp.com",
-    databaseURL: "https://arkhe-clothing-db.firebaseio.com",
-    projectId: "arkhe-clothing-db",
-    storageBucket: "arkhe-clothing-db.appspot.com",
-    messagingSenderId: "606288531804",
-    appId: "1:606288531804:web:cdf15399f38be639507199"
+    apiKey: "AIzaSyDsGejHH_mbUyPHfdaNiGBH81SaY4UhUBc",
+    authDomain: "ixtlan-clothing.herokuapp.com",
+    databaseURL: "https://ixtlan-clothing.firebaseio.com",
+    projectId: "ixtlan-clothing",
+    storageBucket: "ixtlan-clothing.appspot.com",
+    messagingSenderId: "240207446381",
+    appId: "1:240207446381:web:7cca2bf91e6c2ac2efda64"
 }
 
 export const createUserProfileDocument = async (userAuth, additionalData) => {
