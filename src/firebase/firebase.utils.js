@@ -4,7 +4,7 @@ import 'firebase/auth';
 
 const config = {
     apiKey: "AIzaSyDsGejHH_mbUyPHfdaNiGBH81SaY4UhUBc",
-    authDomain: "ixtlan-clothing.herokuapp.com",
+    authDomain: "ixtlan-clothing.firebaseapp.com",
     databaseURL: "https://ixtlan-clothing.firebaseio.com",
     projectId: "ixtlan-clothing",
     storageBucket: "ixtlan-clothing.appspot.com",
