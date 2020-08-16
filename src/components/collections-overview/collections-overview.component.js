@@ -11,9 +11,9 @@ import './collections-overview.styles.scss';
 const CollectionsOverview = ({ collections }) => {
     return (
         <div className="collections-overview">
-            {collections.map(({ id, ...otherColectionProps}) => {
+            {collections.map(({ id, ...otherCollectionProps}) => {
                 return (
-                    <CollectionPreview key={id} {...otherColectionProps} />
+                    <CollectionPreview key={id} {...otherCollectionProps} />
                 );
             })}
         </div>
