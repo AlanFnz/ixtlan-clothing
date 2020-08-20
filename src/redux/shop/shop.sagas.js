@@ -10,7 +10,6 @@ import {
 import ShopActionTypes from './shop.types';
 
 export function* fetchCollectionsAsync() {
-    yield console.log('I am activated');
 
     try {
         const collectionRef = firestore.collection('collections')
