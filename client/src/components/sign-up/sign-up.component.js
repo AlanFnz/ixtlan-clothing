@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { signUpStart, emailSignInStart } from '../../redux/user/user.actions';
+import { signUpStart } from '../../redux/user/user.actions';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 import './sign-up.styles.scss';
 
 const SignUp = ({ signUpStart }) => {
