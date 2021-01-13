@@ -1,13 +1,20 @@
 .sign-in {
-    width: 380px;
+    margin: 0 auto;
+    max-width: 380px;
+    min-width: 300px;
     display: flex;
     flex-direction: column;
     .title{
         margin: 10px 0;
     }
 
-    .buttons{
+    .buttons {
         display: flex;
         justify-content: space-between;
+        // margin: 0 auto;
+    }
+
+    .google-button {
+        margin-left: 1rem;
     }
 };

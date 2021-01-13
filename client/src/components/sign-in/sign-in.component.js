@@ -32,8 +32,9 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
         
     return (
         <div className="sign-in">
-            <h2>I already have an account</h2>
+            <h2 className="title">I already have an account</h2>
             <span>Sign in with your email and password</span>
+            <span>Test user: test@example.com / test1234</span>
 
             <form onSubmit={handleSubmit}>
                 <FormInput 
@@ -54,7 +55,7 @@ const SignIn = ({ emailSignInStart, googleSignInStart }) => {
                 <CustomButton type="submit">
                     Sign In
                 </CustomButton>
-                <CustomButton type="button" onClick={googleSignInStart} isGoogleSignIn>
+                <CustomButton className="google-button" type="button" onClick={googleSignInStart} isGoogleSignIn>
                     Sign In With Google
                 </CustomButton>
                 </div>

@@ -1,0 +1,8 @@
+.contact {
+    max-width: 850px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 1rem;
+    justify-content: space-between;
+    margin: 30px auto;
+}

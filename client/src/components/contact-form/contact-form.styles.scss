@@ -1,0 +1,23 @@
+.contact-form {
+  margin: 0 auto;
+  max-width: 380px;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  .title {
+    margin: 10px 0;
+  }
+
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .google-button {
+    margin-left: 1rem;
+	}
+	
+	.message-box {
+		
+	}
+}
