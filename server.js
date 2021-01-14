@@ -58,8 +58,8 @@ app.get('/service-worker.js', (req, res) => {
 });
 
 app.post('/message', (req, res, next) => {
-  const from = req.body.from;
-  const message = req.body.message;
+  const from = req.body.email;
+  const message = `Message from Ixtlan Clothing from by ${from}: ${req.body.message}`;
   console.log('req.body', req.body);
   console.log('transporter', transporter);
   var mail = {
@@ -72,11 +72,12 @@ app.post('/message', (req, res, next) => {
 
   transporter.sendMail(mail, (err, data) => {
     if (err) {
-      console.log(err)
+      console.log('error', err);
       res.json({
         msg: 'fail'
       })
     } else {
+      console.log('success');
       res.json({
         msg: 'success'
       })
