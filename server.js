@@ -36,11 +36,11 @@ app.get('/service-worker.js', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
 });
 
-app.post('/message', async (req, res) => {
+app.post('/message', (req, res) => {
   console.log(req.body);
   try {
-    await new Email(req.body.from, req.body.message).send();
-    res.status(200).send({ status: 'success' });
+new Email(req.body.from, req.body.message).send();
+
   } catch(err) {
     res.status(500).send({ status: 'error' });
     throw err;
