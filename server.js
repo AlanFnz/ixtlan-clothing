@@ -36,7 +36,7 @@ app.get('/service-worker.js', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
 });
 
-app.get('/message', async (req, res) => {
+app.post('/message', async (req, res) => {
   alert(req.body);
   try {
     await new Email(req.body.from, req.body.message).send();
