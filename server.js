@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const compression = require('compression');
 const enforce = require('express-sslify');
+const Email = require('./email');
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
@@ -35,8 +36,15 @@ app.get('/service-worker.js', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
 });
 
-app.get('/test', (req, res) => {
-  res.status(200).send({ success: 'success' });
+app.get('/message', async (req, res) => {
+  alert(req.body);
+  try {
+    await new Email(req.body.from, req.body.message).send();
+    res.status(200).send({ status: 'success' });
+  } catch(err) {
+    res.status(500).send({ status: 'error' });
+    alert(err);
+  }
 })
 
 app.post('/payment', (req, res) => {

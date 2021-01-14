@@ -1,9 +1,11 @@
 const nodemailer = require('nodemailer');
 
 module.exports = class Email {
-  constructor() {
-    this.to = 'alan.f@msn.com'
-  }
+  constructor(from, message) {
+    this.to = 'alan.f@msn.com';
+    this.from = from;
+    this.message = message;
+  };
 
   newTransport() {
     // if (process.env.NODE_ENV === 'production') {
@@ -19,7 +21,7 @@ module.exports = class Email {
 
     return nodemailer.createTransport({
       host: process.env.REACT_APP_EMAIL_HOST,
-      port: process.env.REACT_APP_sEMAIL_PORT,
+      port: process.env.REACT_APP_EMAIL_PORT,
       auth: {
         user: process.env.REACT_APP_EMAIL_USERNAME,
         pass: process.env.REACT_APP_EMAIL_PASSWORD,
@@ -28,13 +30,13 @@ module.exports = class Email {
   }
 
   // Send the email
-  async send(from, message) {
+  async send() {
 
     // 2) Define email options
     const mailOptions = {
-      from: from,
+      from: this.from,
       to: this.to,
-      message,
+      message: this.message,
     };
 
     // 3) Create a transport and send mail

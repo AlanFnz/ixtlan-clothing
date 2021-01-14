@@ -1,21 +1,9 @@
 import React, { Profiler } from 'react';
-import axios from 'axios';
-
 import Directory from '../../components/directory/directory.component';
-
+// Styles
 import { HomePageContainer } from './homepage.styles';
 
 const HomePage = () => {
-    axios({
-        url: '/test',
-        method: 'get',
-      })
-        .then(response => {
-          alert(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
 
     return (
     <div className="homepage">

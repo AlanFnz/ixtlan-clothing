@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import emailjs from "emailjs-com";
+import axios from 'axios';
 // Selectors
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 // Components
@@ -11,10 +11,10 @@ import CustomButton from "../custom-button/custom-button.component";
 import "./contact-form.styles.scss";
 
 const ContactForm = (props) => {
-  emailjs.init(process.env.REACT_APP_EMAILJS_USERID)
   const [state, setState] = useState({
     email: "",
     message: "",
+    buttonText: "Send message",
   });
 
   useEffect(() => {
@@ -34,51 +34,27 @@ const ContactForm = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const { email, message } = state; 
+    setState((prevState) => ({ ...prevState, buttonText: "Sending..."}))
 
-    const {
-      REACT_APP_EMAILJS_RECEIVER: receiverEmail,
-      REACT_APP_EMAILJS_TEMPLATEID: templateId,
-      REACT_APP_EMAILJS_USERID: user,
-    } = process.env;
-
-    const sendMessage = ({
-      templateId,
-      senderEmail,
-      receiverEmail,
-      data,
-      user,
-    }) => {
-      emailjs
-        .send(
-          "default_service",
-          templateId,
-          {
-            senderEmail,
-            receiverEmail,
-            data,
-          },
-          user
-        )
-        .then((res) => {
-          if (res.status === 200) {
-            console.log('Success, check your email');
-          }
-        })
-
-        .catch((err) => {
-          console.error("Failed to send feedback. Error: ", err);
-        });
-    };
-
-    sendMessage({
-      templateId,
+    axios({
+      url: '/message',
+      method: 'post',
       email,
-      receiverEmail,
-      message,
-      user,
-    });
-
-  };
+      message
+    })
+      .then(response => {
+        alert(response);
+        setState((prevState) => ({ ...prevState, buttonText: "Success! :)"}))
+        window.setTimeout(() => {
+          props.history.push('/');
+          window.scrollTo(0, 0);
+        }, 1500);
+      })
+      .catch(error => {
+        console.log(error);
+        setState((prevState) => ({ ...prevState, buttonText: "Error! :("}))
+      });
+    };
 
   return (
     <div className="contact-form">
@@ -110,7 +86,7 @@ const ContactForm = (props) => {
           required
         />
         <div className="buttons">
-          <CustomButton type="submit">Send message</CustomButton>
+          <CustomButton type="submit">{state.buttonText}</CustomButton>
         </div>
       </form>
     </div>
