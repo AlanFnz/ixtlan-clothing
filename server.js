@@ -52,10 +52,11 @@ app.post('/message', (req, res, next) => {
   sgMail
   .send(msg)
   .then(() => {
-    console.log('Email sent')
+    res.status(200).json({ status: 'success' });
   })
   .catch((error) => {
     console.error(error)
+    res.status(500).json({ status: 'error' });
   })
 
 })

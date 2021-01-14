@@ -12,11 +12,14 @@ import CustomButton from "../custom-button/custom-button.component";
 import "./contact-form.styles.scss";
 
 const ContactForm = (props) => {
-  const [state, setState] = useState({
+
+  const initialState = {
     email: "",
     message: "",
     buttonText: "Send message",
-  });
+  }
+
+  const [state, setState] = useState(initialState);
 
   useEffect(() => {
     if (props.currentUser && props.currentUser.email) {
@@ -45,13 +48,17 @@ const ContactForm = (props) => {
         message
       },
     })
-      .then(response => {
-        alert(response);
-        setState((prevState) => ({ ...prevState, buttonText: "Success! :)"}))
-        window.setTimeout(() => {
-          props.history.push('/');
-          window.scrollTo(0, 0);
-        }, 1500);
+      .then(res => {
+        if (res.data.stats === 'success') {
+          setState((prevState) => ({ ...prevState, buttonText: "Success! :)"}))
+          window.setTimeout(() => {
+            setState(initialState);
+            props.history.push('/');
+            window.scrollTo(0, 0);
+          }, 2500);
+        } else {
+          setState((prevState) => ({ ...prevState, buttonText: "Error! :("}))
+        }
       })
       .catch(error => {
         console.log(error);
