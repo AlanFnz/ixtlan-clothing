@@ -20,6 +20,8 @@ const CheckoutPage = lazy (() => import ('./pages/checkout/checkout.component'))
 
 const App = ({ checkUserSession, currentUser }) => {
 
+  console.log(process.env)
+
  useEffect(() => {checkUserSession()}, [checkUserSession]);
     return (
       <div>

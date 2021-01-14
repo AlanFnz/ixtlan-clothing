@@ -35,6 +35,10 @@ app.get('/service-worker.js', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
 });
 
+app.get('/test', (req, res) => {
+  res.status(200).send({ success: 'success' });
+})
+
 app.post('/payment', (req, res) => {
   const body = {
     source: req.body.token.id,
