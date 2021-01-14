@@ -39,8 +39,10 @@ const ContactForm = (props) => {
     axios({
       url: '/message',
       method: 'post',
-      email,
-      message
+      data: {
+        email,
+        message
+      },
     })
       .then(response => {
         alert(response);
