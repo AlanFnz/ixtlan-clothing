@@ -37,7 +37,7 @@ app.get('/service-worker.js', (req, res) => {
 });
 
 app.post('/message', (req, res) => {
-  console.log(req.body);
+  console.log('req.body', req.body);
   try {
 new Email(req.body.from, req.body.message).send();
 
