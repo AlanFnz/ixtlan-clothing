@@ -55,23 +55,15 @@ app.get('/service-worker.js', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
 });
 
-// app.post('/message', (req, res) => {
-//   console.log('req.body', req.body);
-//   try {
-//     new Email(req.body.from, req.body.message).send();
-//   } catch(err) {
-//     res.status(500).send({ status: 'error' });
-//     throw err;
-//   }
-// })
-
 app.post('/message', (req, res, next) => {
   const from = req.body.from;
   const message = req.body.message;
-
+  console.log('req.body', req.body);
+  console.log('transport', trasnport);
+  console.log('transporter', transporter);
   var mail = {
     from: from,
-    to: 'RECEIVING_EMAIL_ADDRESS_GOES_HERE',  
+    to: 'alan.f@msn.com',  
     subject: 'Contact form Ixtlan Clothing',
 
     html: message
@@ -79,6 +71,7 @@ app.post('/message', (req, res, next) => {
 
   transporter.sendMail(mail, (err, data) => {
     if (err) {
+      console.log(err)
       res.json({
         msg: 'fail'
       })
