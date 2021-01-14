@@ -77,7 +77,7 @@ app.post('/message', (req, res, next) => {
   console.log('req.body', req.body);
   console.log('transporter', transporter);
   var mail = {
-    from: from,
+    from: 'alan.f@msn.com',
     to: 'alan.f@msn.com',  
     subject: 'Contact form Ixtlan Clothing',
 
