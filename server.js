@@ -4,8 +4,6 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const compression = require('compression');
 const enforce = require('express-sslify');
-// const nodemailer = require("nodemailer");
-// const nodemailerSendgrid = require('nodemailer-sendgrid');
 const sgMail = require('@sendgrid/mail')
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
@@ -16,40 +14,6 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY);
-
-// const transport = {
-//   host: process.env.REACT_APP_EMAIL_HOST,
-//   port: process.env.REACT_APP_EMAIL_PORT,
-//   auth: {
-//     user: process.env.REACT_APP_EMAIL_USERNAME,
-//     pass: process.env.REACT_APP_EMAIL_PASSWORD,
-//   },
-// };
-
-// const transport = {
-//   service: 'SendGrid',
-//   auth: {
-//     api_key: process.env.REACT_APP_SENDGRID_APIKEY,
-//   },
-// };
-
-// console.log('transport:', transport);
-
-// const transporter = nodemailer.createTransport(transport);
-
-// const transporter = nodemailer.createTransport(
-//   nodemailerSendgrid({
-//       apiKey: process.env.REACT_APP_SENDGRID_API_KEY
-//   })
-// );
-
-// transporter.verify((error, success) => {
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log("Transporter ok");
-//   }
-// });
 
 app.use(compression());
 app.use(bodyParser.json());
@@ -79,7 +43,7 @@ app.post('/message', (req, res, next) => {
   const message = `Message from Ixtlan Clothing by ${from}: ${req.body.message}`;
 
   var msg = {
-    to: 'alan.f@msn.com',  
+    to: 'lalannn@gmail.com',  
     from: 'alan.f@msn.com',
     subject: 'Contact from Ixtlan Clothing',
     text: message
@@ -94,19 +58,6 @@ app.post('/message', (req, res, next) => {
     console.error(error)
   })
 
-  // transporter.sendMail(mail, (err, data) => {
-  //   if (err) {
-  //     console.log('error', err);
-  //     res.json({
-  //       msg: 'fail'
-  //     })
-  //   } else {
-  //     console.log('success');
-  //     res.json({
-  //       msg: 'success'
-  //     })
-  //   }
-  // })
 })
 
 app.post('/payment', (req, res) => {
