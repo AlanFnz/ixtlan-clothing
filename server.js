@@ -25,8 +25,7 @@ const port = process.env.PORT || 5000;
 const transport = {
   service: 'SendGrid',
   auth: {
-    user: process.env.REACT_APP_SENDGRID_USERNAME,
-    pass: process.env.REACT_APP_SENDGRID_PASSWORD,
+    api_key: process.env.REACT_APP_SENDGRID_APIKEY,
   },
 };
 
