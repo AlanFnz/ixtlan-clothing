@@ -37,13 +37,13 @@ app.get('/service-worker.js', (req, res) => {
 });
 
 app.post('/message', async (req, res) => {
-  alert(req.body);
+  console.log(req.body);
   try {
     await new Email(req.body.from, req.body.message).send();
     res.status(200).send({ status: 'success' });
   } catch(err) {
     res.status(500).send({ status: 'error' });
-    alert(err);
+    throw err;
   }
 })
 
