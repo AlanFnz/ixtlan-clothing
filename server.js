@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const compression = require('compression');
 const enforce = require('express-sslify');
-const Email = require('./email');
+const nodemailer = require("nodemailer");
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
@@ -12,6 +12,25 @@ const stripe = require('stripe')(process.env.REACT_APP_KEY);
 
 const app = express();
 const port = process.env.PORT || 5000;
+
+const transport = {
+  host: process.env.REACT_APP_EMAIL_HOST,
+  port: process.env.REACT_APP_EMAIL_PORT,
+  auth: {
+    user: process.env.REACT_APP_EMAIL_USERNAME,
+    pass: process.env.REACT_APP_EMAIL_PASSWORD,
+  },
+};
+
+const transporter = nodemailer.createTransport(transport);
+
+transporter.verify((error, success) => {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Transporter ok");
+  }
+});
 
 app.use(compression());
 app.use(bodyParser.json());
@@ -36,15 +55,39 @@ app.get('/service-worker.js', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'build', 'service-worker.js'));
 });
 
-app.post('/message', (req, res) => {
-  console.log('req.body', req.body);
-  try {
-new Email(req.body.from, req.body.message).send();
+// app.post('/message', (req, res) => {
+//   console.log('req.body', req.body);
+//   try {
+//     new Email(req.body.from, req.body.message).send();
+//   } catch(err) {
+//     res.status(500).send({ status: 'error' });
+//     throw err;
+//   }
+// })
 
-  } catch(err) {
-    res.status(500).send({ status: 'error' });
-    throw err;
+app.post('/message', (req, res, next) => {
+  const from = req.body.from;
+  const message = req.body.message;
+
+  var mail = {
+    from: from,
+    to: 'RECEIVING_EMAIL_ADDRESS_GOES_HERE',  
+    subject: 'Contact form Ixtlan Clothing',
+
+    html: message
   }
+
+  transporter.sendMail(mail, (err, data) => {
+    if (err) {
+      res.json({
+        msg: 'fail'
+      })
+    } else {
+      res.json({
+        msg: 'success'
+      })
+    }
+  })
 })
 
 app.post('/payment', (req, res) => {
