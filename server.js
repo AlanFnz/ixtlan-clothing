@@ -5,6 +5,7 @@ const path = require('path');
 const compression = require('compression');
 const enforce = require('express-sslify');
 const nodemailer = require("nodemailer");
+const nodemailerSendgrid = require('nodemailer-sendgrid');
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 
@@ -22,16 +23,22 @@ const port = process.env.PORT || 5000;
 //   },
 // };
 
-const transport = {
-  service: 'SendGrid',
-  auth: {
-    api_key: process.env.REACT_APP_SENDGRID_APIKEY,
-  },
-};
+// const transport = {
+//   service: 'SendGrid',
+//   auth: {
+//     api_key: process.env.REACT_APP_SENDGRID_APIKEY,
+//   },
+// };
 
-console.log('transport:', transport);
+// console.log('transport:', transport);
 
-const transporter = nodemailer.createTransport(transport);
+// const transporter = nodemailer.createTransport(transport);
+
+const transporter = nodemailer.createTransport(
+  nodemailerSendgrid({
+      apiKey: process.env.REACT_APP_SENDGRID_API_KEY
+  })
+);
 
 transporter.verify((error, success) => {
   if (error) {
