@@ -13,12 +13,20 @@ const stripe = require('stripe')(process.env.REACT_APP_KEY);
 const app = express();
 const port = process.env.PORT || 5000;
 
+// const transport = {
+//   host: process.env.REACT_APP_EMAIL_HOST,
+//   port: process.env.REACT_APP_EMAIL_PORT,
+//   auth: {
+//     user: process.env.REACT_APP_EMAIL_USERNAME,
+//     pass: process.env.REACT_APP_EMAIL_PASSWORD,
+//   },
+// };
+
 const transport = {
-  host: process.env.REACT_APP_EMAIL_HOST,
-  port: process.env.REACT_APP_EMAIL_PORT,
+  service: 'SendGrid',
   auth: {
-    user: process.env.REACT_APP_EMAIL_USERNAME,
-    pass: process.env.REACT_APP_EMAIL_PASSWORD,
+    user: process.env.REACT_APP_SENDGRID_USERNAME,
+    pass: process.env.REACT_APP_SENDGRID_PASSWORD,
   },
 };
 
@@ -59,7 +67,7 @@ app.get('/service-worker.js', (req, res) => {
 
 app.post('/message', (req, res, next) => {
   const from = req.body.email;
-  const message = `Message from Ixtlan Clothing from by ${from}: ${req.body.message}`;
+  const message = `Message from Ixtlan Clothing by ${from}: ${req.body.message}`;
   console.log('req.body', req.body);
   console.log('transporter', transporter);
   var mail = {
