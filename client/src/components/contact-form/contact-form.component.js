@@ -49,7 +49,7 @@ const ContactForm = (props) => {
       },
     })
       .then(res => {
-        if (res.data.stats === 'success') {
+        if (res.data.status === 'success') {
           setState((prevState) => ({ ...prevState, buttonText: "Success! :)"}))
           window.setTimeout(() => {
             setState(initialState);
