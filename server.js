@@ -22,6 +22,8 @@ const transport = {
   },
 };
 
+console.log('transport:', trasnport)
+
 const transporter = nodemailer.createTransport(transport);
 
 transporter.verify((error, success) => {
@@ -59,7 +61,6 @@ app.post('/message', (req, res, next) => {
   const from = req.body.from;
   const message = req.body.message;
   console.log('req.body', req.body);
-  console.log('transport', trasnport);
   console.log('transporter', transporter);
   var mail = {
     from: from,
