@@ -22,7 +22,7 @@ const transport = {
   },
 };
 
-console.log('transport:', trasnport)
+console.log('transport:', transport);
 
 const transporter = nodemailer.createTransport(transport);
 
