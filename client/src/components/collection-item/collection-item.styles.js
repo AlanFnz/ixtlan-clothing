@@ -8,7 +8,7 @@ export const CollectionItemContainer = styled.div`
   height: 350px;
   align-items: center;
   position: relative;
-  margin: 0 5px;
+  margin: 0 5px 25px 5px;
   &:hover {
     .image {
       opacity: 0.8;

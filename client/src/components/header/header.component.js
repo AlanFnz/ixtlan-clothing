@@ -9,7 +9,7 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { signOutStart } from '../../redux/user/user.actions';
 // Layout
 import { HeaderContainer, LogoContainer, OptionsContainer, OptionLink } from './header.styles';
-import { ReactComponent as Logo } from '../../assets/crown.svg';
+import { ReactComponent as Logo } from '../../assets/logo-ixtlan-clothing.svg';
 
 const Header = ({ currentUser, hidden, signOutStart }) => {
     return (

@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "crwn-192x192.png",
+      "src": "ixtl-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "crwn-512x512.png",
+      "src": "ixtl-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }

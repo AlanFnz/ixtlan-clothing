@@ -5,9 +5,9 @@ export const CollectionPreviewContainer = styled.div`
   flex-direction: column;
   margin-bottom: 30px;
 
-  @media screen and (max-width: 800px) {
-    align-items: center;
-  }
+  // @media screen and (max-width: 580px) {
+    // align-items: center;
+  // }
 
 `;
 
@@ -21,13 +21,21 @@ export const TitleContainer = styled.h1`
 `;
 
 export const PreviewContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
 
-  @media screen and (max-width: 800px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 15px;
+  @media only screen and (max-width: 580px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  
+  @media only screen and (max-width: 480px) {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+  @media only screen and (max-width: 360px) {
+      grid-template-columns: 1fr;
+    
   }
 
 `;
