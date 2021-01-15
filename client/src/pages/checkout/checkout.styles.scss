@@ -40,4 +40,23 @@
     font-size: 24px;
     color: red;
   }
+
+}
+
+@media only screen and (max-width: 510px) {
+  .checkout-page {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 390px) {
+  .checkout-page {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .checkout-page {
+    width: 90%;
+  }
 }

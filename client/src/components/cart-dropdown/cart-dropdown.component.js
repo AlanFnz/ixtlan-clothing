@@ -16,6 +16,10 @@ const CartDropdown = ({ cartItems, history, dispatch }) => {
 
     return (
         <div className="cart-dropdown">
+            <div className='cart-close' onClick={() => {
+                dispatch(toggleCartHidden());
+                    }
+                }>x</div>
             <div className='cart-items'>
                 {
                     cartItems.length ? 
