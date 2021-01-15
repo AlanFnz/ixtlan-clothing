@@ -34,7 +34,7 @@ const StripeCheckoutButton = ({ price }) => {
       name='Ixtlan Clothing'
       billingAddress
       shippingAddress
-      image='https://svgshare.com/s/TAW'
+      image='https://svgshare.com/i/TAW.svg'
       description={`Your total is $${price}`}
       amount={priceForStripe}
       panelLabel='Pay Now'
