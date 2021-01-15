@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import CustomButton from '../custom-button/custom-button.component';
 
 export const CollectionItemContainer = styled.div`
-  width: 22vw;
+  max-width: 22vw;
   display: flex;
   flex-direction: column;
   height: 350px;
@@ -20,7 +20,7 @@ export const CollectionItemContainer = styled.div`
   }
 
   @media screen and (max-width: 800px) {
-    width: 40vw;
+    max-width: 40vw;
 
     &:hover {
       .image {
@@ -32,6 +32,13 @@ export const CollectionItemContainer = styled.div`
     }
   }
 
+  @media only screen and (max-width: 480px) {
+    max-width: 45vw;
+  }
+
+  @media only screen and (max-width: 360px) {
+    max-width: 90vw;
+  }
 `;
 
 export const AddButton = styled(CustomButton)`
